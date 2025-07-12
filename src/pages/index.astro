@@ -1,11 +1,130 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation';
+import "../styles/global.css";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const pageTitle = "Home Page";
 ---
+<Layout>
+  {/* Hero Section */}
+<section class="w-screen min-h-[60vh] flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white mb-8">
+  <h1 class="text-5xl font-bold mb-4">Welcome to Mosha!</h1>
+  <p class="text-xl mb-2">Discover beautiful furniture and design inspiration.</p>
+</section>
 
+  {/* News */}
+<section class="w-full overflow-x-auto whitespace-nowrap py-6 px-4 flex items-center border-b border-gray-200 mb-8">
+  <span class="font-serif font-bold text-xl text-gray-700 mr-8 min-w-max">NEWS</span>
+  <span class="text-lg text-gray-800 mr-8 min-w-max">2020/07/29</span>
+  <span class="border border-gray-400 rounded px-3 py-1 text-gray-700 text-base mr-8 min-w-max">お知らせ</span>
+  <span class="text-xl text-gray-900 mr-8 min-w-max">公式Webサイトをリニューアルしました</span>
+  <div class="flex-1"></div>
+  <a href="#" class="flex items-center text-gray-700 text-lg min-w-max hover:underline">
+    お知らせ一覧
+    <svg class="ml-2 w-8 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 40 16">
+      <line x1="0" y1="8" x2="36" y2="8" stroke="currentColor" stroke-width="2"/>
+      <polyline points="32,4 36,8 32,12" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  </a>
+</section>
+
+  {/* our philosophy */}
+  <section class="w-full flex flex-col md:flex-row items-center justify-center py-16 gap-12">
+    <div class="max-w-md flex-1 px-6">
+      <h2 class="font-serif text-2xl mb-4">our philosophy</h2>
+      <p class="mb-2 text-sm">杉山家具製作所の家具づくり</p>
+      <p class="mb-2 text-sm">ただ多くの数をおおひただけの家具であってはいけない。</p>
+      <p class="mb-2 text-sm">間に合わせの家具であってもいけない。</p>
+      <p class="mb-2 text-sm">ものが売れる喜びではなく、</p>
+      <p class="mb-6 text-sm">こころが動かたによる家具づくりをするべきである。</p>
+      <a href="#" class="block border border-gray-400 px-6 py-3 text-center text-gray-700 hover:bg-gray-100 transition w-full">杉山家具製作所について　→</a>
+    </div>
+    <div class="flex-1 flex justify-center">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="philosophy" class="rounded-md w-full max-w-md object-cover h-72" />
+    </div>
+  </section>
+
+  {/* commitment to quality */}
+  <section class="w-full flex flex-col items-center py-16 bg-white">
+    <h2 class="font-serif text-2xl mb-2">commitment to quality</h2>
+    <p class="mb-8 text-xs text-gray-500">杉山家具製作所の製品について</p>
+    <div class="flex flex-col md:flex-row gap-8 w-full max-w-4xl justify-center">
+      <a href="#" class="flex-1 flex flex-col items-center group">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400&q=80" alt="chair" class="rounded-md w-full h-40 object-cover mb-2" />
+        <span class="text-xs text-gray-700 group-hover:underline">製品の種類　→</span>
+      </a>
+      <a href="#" class="flex-1 flex flex-col items-center group">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="wood" class="rounded-md w-full h-40 object-cover mb-2" />
+        <span class="text-xs text-gray-700 group-hover:underline">木材の種類　→</span>
+      </a>
+      <a href="#" class="flex-1 flex flex-col items-center group">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="craft" class="rounded-md w-full h-40 object-cover mb-2" />
+        <span class="text-xs text-gray-700 group-hover:underline">技術・設備　→</span>
+      </a>
+    </div>
+  </section>
+
+  {/* our works */}
+  <section class="w-full flex flex-col items-center py-16">
+    <h2 class="font-serif text-2xl mb-2">our works</h2>
+    <p class="mb-8 text-xs text-gray-500">納品事例</p>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 w-full max-w-6xl mb-10">
+      <a href="#" class="relative group">
+        <img src="https://images.unsplash.com/photo-1503389152951-9c3d8e1e8d4e?auto=format&fit=crop&w=400&q=80" alt="work1" class="rounded-md w-full h-40 object-cover" />
+        <span class="absolute left-2 top-2 text-xs text-white bg-black/40 px-2 py-1 rounded">K邸邸(住宅家具)<br/>ダイニングテーブル<br/>サイドボード</span>
+      </a>
+      <a href="#" class="relative group">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="work2" class="rounded-md w-full h-40 object-cover" />
+        <span class="absolute left-2 top-2 text-xs text-white bg-black/40 px-2 py-1 rounded">G邸邸(住宅家具)<br/>テレビボード</span>
+      </a>
+      <a href="#" class="relative group">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="work3" class="rounded-md w-full h-40 object-cover" />
+        <span class="absolute left-2 top-2 text-xs text-white bg-black/40 px-2 py-1 rounded">飲食店什器<br/>カウンター・収納棚</span>
+      </a>
+      <a href="#" class="relative group">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=400&q=80" alt="work4" class="rounded-md w-full h-40 object-cover" />
+        <span class="absolute left-2 top-2 text-xs text-white bg-black/40 px-2 py-1 rounded">オフィス什器<br/>収納棚・カウンター</span>
+      </a>
+    </div>
+    <a href="#" class="block border border-gray-400 px-8 py-3 text-center text-gray-700 hover:bg-gray-100 transition w-72">納品事例一覧　→</a>
+  </section>
+
+  {/* about us */}
+  <section class="w-full bg-[#4a4d3c] text-white py-20 flex flex-col items-center">
+    <h2 class="font-serif text-2xl mb-2">about us</h2>
+    <p class="mb-8 text-xs">杉山家具製作所について</p>
+    <div class="flex flex-col md:flex-row gap-12 w-full max-w-4xl items-center justify-center mb-10">
+      <div class="flex-1 flex justify-center">
+        {/* Placeholder for logo */}
+        <div class="w-40 h-40 bg-white rounded flex items-center justify-center">
+          <span class="text-4xl text-[#4a4d3c] font-bold">LOGO</span>
+        </div>
+      </div>
+      <div class="flex-1 text-sm">
+        <div class="mb-2">株式会社杉山家具製作所</div>
+        <div class="mb-2">岐阜県揖斐郡揖斐川町北方3-1　<a href="#" class="underline text-xs">Google Map</a></div>
+        <div class="mb-2">tel.0585-22-0625 / fax.0585-22-5667</div>
+        <a href="#" class="block border border-gray-200 px-8 py-3 text-center text-white hover:bg-white hover:text-[#4a4d3c] transition w-60 mt-6">会社情報　→</a>
+      </div>
+    </div>
+    <div class="border-t border-gray-400 w-full max-w-4xl mt-8 pt-4 flex justify-end">
+      <a href="#" class="text-xs text-white hover:underline flex items-center">採用情報
+        <svg class="ml-2 w-6 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 8">
+          <line x1="0" y1="4" x2="20" y2="4" stroke="currentColor" stroke-width="2"/>
+          <polyline points="16,1 20,4 16,7" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+
+<!-- News Section End -->
+<!-- 
 <Layout>
 	<Welcome />
-</Layout>
+	<h1>Welcome to Mosha!</h1>
+	<p>This is a simple Astro project to get you started. You can customize it as you like.</p
+	<p>Check out the <a href="https://docs.astro.build">Astro documentation</a> for more information on how to build your site.</p>
+	<p>Feel free to explore the <code>src</code> directory to see how -->
