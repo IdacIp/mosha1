@@ -1,120 +1,133 @@
-import React from "react";
+import React, { useState } from "react";
+import Logo from "../assets/logoipsum-380.svg";
 
+// All links are hardcoded and internal (no user input)
 const navLinks = [
-  { label: "杉山家具製作所について", href: "#" },
-  { label: "製品について", href: "#" },
-  { label: "納品事例", href: "#" },
-  { label: "会社情報", href: "#" },
+  { label: "杉山家具製作所について", href: "/about" },
+  { label: "製品について", href: "/products" },
+  { label: "納品事例", href: "/cases" },
+  { label: "会社情報", href: "/company" },
 ];
 
 export default function Navigation() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header
-      style={{
-        display: "flex",
-        alignItems: "stretch",
-        width: "100vw",
-        height: 80,
-        background: "#fff",
-        boxSizing: "border-box",
-      }}
-    >
+    <header className="flex items-stretch w-screen lg:h-[120px] h-[60px] bg-white box-border relative">
       {/* Logo */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          minWidth: 260,
-          paddingLeft: 24,
-        }}
+      <a href="/" className="flex items-center">
+        <img src={Logo.src} alt="杉山家具製作所" className="h-7 w-40 pl-5 lg:h-7 lg:w-64 lg:pl-10" />
+      </a>
+      
+      {/* Hamburger (mobile only) */}
+      <button
+        className="drawer_open lg:hidden flex flex-col items-center justify-center ml-auto mr-6"
+        aria-label="Open mobile menu"
+        onClick={() => setMenuOpen(true)}
       >
-        {/* Logo icon (placeholder square blocks) */}
-        <div style={{ marginRight: 16 }}>
-          <svg width={40} height={40} viewBox="0 0 40 40">
-            <rect x="0" y="0" width="16" height="16" fill="#54594B" />
-            <rect x="0" y="20" width="16" height="16" fill="#54594B" />
-            <rect x="20" y="0" width="16" height="36" fill="#54594B" />
-          </svg>
-        </div>
-        <div>
-          <div style={{ fontSize: 22, letterSpacing: 6, color: "#54594B" }}>
-            杉山家具製作所
-          </div>
-          <div
-            style={{
-              fontSize: 10,
-              letterSpacing: 2,
-              color: "#54594B",
-              marginTop: 2,
-            }}
-          >
-            SUGIYAMA FURNITURE
-          </div>
-        </div>
-      </div>
-      {/* Navigation links */}
-      <nav
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flex: 1,
-          justifyContent: "center",
-          gap: 48,
-        }}
-      >
+        <span className="block w-[27px] h-px bg-[#4e5346] mb-2"></span>
+        <span className="block w-[27px] h-px bg-[#4e5346] mb-2"></span>
+        <span className="block w-[27px] h-px bg-[#4e5346]"></span>
+      </button>
+      
+      {/* Navigation links (desktop only) */}
+      <nav className="hidden lg:flex items-center flex-1 justify-end gap-12">
         {navLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            style={{
-              fontSize: 22,
-              color: "#222",
-              textDecoration: "none",
-              letterSpacing: 2,
-              padding: "0 8px",
-            }}
+            className="text-[14px] text-[#222] no-underline tracking-[2px] px-2"
           >
             {link.label}
           </a>
         ))}
+        <span className="inline-block w-2"></span>
       </nav>
-      {/* Right side: Recruitment and Contact */}
-      <div style={{ display: "flex", alignItems: "stretch" }}>
+      {/* Right side: Recruitment and Contact (desktop only) */}
+      <div className="hidden lg:flex items-stretch">
         <a
-          href="#"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minWidth: 120,
-            fontSize: 22,
-            color: "#222",
-            background: "#fff",
-            textDecoration: "none",
-            letterSpacing: 2,
-            borderLeft: "1px solid #eee",
-          }}
+          href="/recruit"
+          className="flex items-center justify-center min-w-[120px] text-[16px] text-[#222] bg-white no-underline tracking-[2px] border-l border-[#eee]"
         >
           採用情報
         </a>
         <a
-          href="#"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minWidth: 180,
-            fontSize: 24,
-            color: "#fff",
-            background: "#54594B",
-            textDecoration: "none",
-            letterSpacing: 2,
-            fontWeight: 500,
-          }}
+          href="/contact"
+          className="flex items-center justify-center min-w-[180px] text-[16px] text-white bg-[#54594B] no-underline tracking-[2px] font-medium"
         >
           お問い合わせ
         </a>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex"
+          aria-modal="true"
+          role="dialog"
+        >
+          {/* Overlay background */}
+          <div
+            className="fixed inset-0 bg-white"
+            onClick={() => setMenuOpen(false)}
+          />
+          {/* Menu content */}
+          <div className="relative flex flex-col w-full h-[700px] z-10">
+            {/* Overlay header: logo + close button */}
+            <div className="flex items-center justify-between h-[60px] w-full bg-white pl-5 pr-2">
+              <a href="/" className="flex items-center h-[60px]">
+                <img src={Logo.src} alt="杉山家具製作所" className="h-7 w-40" />
+              </a>
+              <button
+                className="text-[#54594B] text-3xl h-[60px] w-10 flex items-center justify-center"
+                aria-label="メニューを閉じる"
+                onClick={() => setMenuOpen(false)}
+                style={{ background: "transparent" }}
+              >
+                ×
+              </button>
+            </div>
+            {/* Navigation area */}
+            <div className="flex-1 flex flex-col bg-[#54594B] text-white p-14 pt-[65px] pb-[100px]">
+              <div className="flex flex-col gap-5 m-auto" >
+                <nav className="flex flex-col gap-5 m-auto">
+                  <a href="/" className="text-[16px] tracking-widest">トップページ</a>
+                  {navLinks.slice(0, 3).map((link) => (
+                    <a key={link.label} href={link.href} className="text-[16px] tracking-widest">
+                    {link.label}
+                    </a>
+                  ))}
+
+                  <a href="/news" className="text-[16px] tracking-widest">お知らせ</a>
+                  <a href="/company" className="text-[16px] tracking-widest">会社情報</a>
+                  <a href="/recruit" className="text-[16px] tracking-widest">採用情報</a>
+                  <a href="/contact" className="text-[16px] tracking-widest">お問い合わせ</a>
+                  <a href="/privacy" className="text-[16px] tracking-widest">個人情報保護方針</a>
+                </nav>
+
+              {/* SNS */}
+
+                <a
+                  href="https://instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-xs tracking-widest"
+                >
+                  <span className="w-4 h-4 bg-white rounded mr-1"></span>Instagram
+                </a>
+                <a
+                  href="https://facebook.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-xs tracking-widest"
+                >
+                  <span className="w-4 h-4 bg-white rounded mr-1"></span>Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
